@@ -1,0 +1,7 @@
+{
+    "go.testFlags": ["-v"],
+    "go.useLanguageServer": true,
+    "gopls": {
+      "experimentalWorkspaceModule": true
+    }
+}
