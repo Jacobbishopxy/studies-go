@@ -9,6 +9,10 @@
 
 ## To read
 
+- [Golang meets API](https://dev.to/wchr/series/4725)
+- [Quick Start: Golang & MongoDB - A Quick Look at GridFS](https://www.mongodb.com/blog/post/quick-start-golang--mongodb--a-quick-look-at-gridfs)
+- [Asynchronous Processing with Go using Kafka and MongoDB](https://dev.to/donvito/asynchronous-processing-with-go-using-kafka-and-mongodb-2pga)
+- [Getting Started with Go Context](https://dev.to/gopher/getting-started-with-go-context-l7g)
 - [Let's Build a GraphQL Server in Go](https://w11i.me/graphql-server-go-part1)
 - [Backend master class Series](https://dev.to/techschoolguru/series/7172)
 - [The complete gRPC course Series](https://dev.to/techschoolguru/series/7311)
