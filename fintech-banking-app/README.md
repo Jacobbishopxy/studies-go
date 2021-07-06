@@ -307,4 +307,86 @@ JWT 的一个缺点是 token header 中包含了标记算法。正因如此，�
 
 ### PASETO - Platform Agnostic Security Token
 
-...
+PASETO，即平台无关的安全令牌 Platform Agnostic Security Token，是一个最成功的设计，它在社区中被广泛的接受，以及被视为最安全的安全令相比于 JWT。
+
+#### 强算法
+
+它首先解决了所有的 JWT 问题，提供了强算法。开发者不再需要选择算法，他们只需要选择某一个版本的 PASETO 来使用。
+
+![paseto12](./img/paseto12.png)
+
+每个 PASETO 版本都由一套强力的密码学而实现。在任何时候只会保持最新的两个版本的 PASETO 处于激活状态。现在两个 PASETO 的版本是 1 和 2。
+
+##### PASETO 版本 1
+
+版本 1 较旧，仅可以被不能使用现代密码学的传统系统所使用。类似于 JWT，paseto12 同样拥有两个算法类别应对两种场景。本地或内部服务，我们使用一个对称算法。
+
+![paseto13](./img/paseto13.png)
+
+不同于 JWT 仅用 base64 编码负载以及制定 token，PASETO 则是通过一个秘钥来加密以及认证所有的 token 中的数据，其使用的是一个带有关联数据（AEAD）算法的强认证密码。PASETO 版本 1 中所使用的 AEAD 算法是带有 HMAC SHA384 的 AES256 CTR。
+
+而公共场景下，外部服务需要验证 token，我们需要使用一个非对称算法。这种场景下，PASETO 使用类似于 JWT 的方式，也就是说不对 token 数据加密，而仅用 base64 进行编码，并使用一个秘钥来制定数字签名的内容。
+
+![paseto14](./img/paseto14.png)
+
+PASETO 版本 1 的非对称算法是带有 SHA384 的 RSA PSS。
+
+##### PASETO 版本 2
+
+PASETO 的最新版本号是 2，该版本更加的安全并且使用了现代算法。
+
+本地的对称算法使用的是带有 Poly1305 的 XChacha20 的算法。
+
+![paseto15](./img/paseto15.png)
+
+而公共场景下，使用的是带有 curve 25519 的 Edward-curve 数字签名算法。
+
+![paseto16](./img/paseto16.png)
+
+#### 不易被伪造
+
+PASETO 的设计使得伪造变为不可能。因为算法的 header 不再存在，因此攻击者不能设定其为 none，或是强迫服务器使用 header 中所提供的算法。
+
+![paseto17](./img/paseto17.png)
+
+所有存在与 token 的也都被 AEAD 认证，因此不可能对其做手脚。此外如果你使用一个本地的对称算法，负载现在是被加密的，而不仅仅是被编码，因此它不可能被黑客读取，或是在不知道服务器秘钥时替换掉 token 中的数据。
+
+现在让我们看一下 PASETO token 的结构。
+
+![paseto18](./img/paseto18.png)
+
+这是一个版本 2 的 PASETO token 用作于本地。它一共有 4 个主要部分，由点所分隔。
+
+第一个部分是 PASETO 的版本（红色），即版本 2。
+
+第二部分是 token 的目的，它是用作于 local 还是 public 场景？这个例子是 local，也就意味着使用一个对称秘钥验证的加密算法。
+
+第三部分（绿色）是主体或者是 token 的负载数据。注意它是被加密的，所以如果我们通过秘钥解密它，我们将会的到 3 个小部分：
+
+![paseto19](./img/paseto19.png)
+
+- 首先是负载主体。本例我们仅存储一个简单的信息，以及一个 token 的过期时间。
+- 其次，在加密和消息身份验证过程中都使用的 nonce 值。
+- 最后使用消息认证标签对加密的消息及其关联的未加密数据进行认证。
+
+![paseto20](./img/paseto20.png)
+
+本例中未被加密的数据是版本号，目的，以及 token 的注脚（紫色）。
+
+你可以存储任何公共信息于注脚中，因为它不会像负载体那样被加密，而仅被 base64 编码。因此任何获取 token 的人可以解码并阅读注脚的数据。
+
+![paseto21](./img/paseto21.png)
+
+本例中，是 Paragon Initiative Enterprises，即发明 PASETO 的企业。
+
+注意注脚是可选的，因此你可以拥有一个 PASETO token 而不需要注脚。例如以下是另一个 PASETO token：
+
+![paseto22](./img/paseto22.png)
+
+它仅有 3 个部分而没有注脚。你可以看到，绿色部分的负载是实际的被编码体，它可以简单的被解码并获得 JSON 对象。
+
+![paseto23](./img/paseto23.png)
+
+而蓝色部分的负载是 token 的签名，是由带有秘钥的数字签名算法而生成的。服务器将使用匹配的公钥来验证该签名
+
+![paseto24](./img/paseto24.png)
