@@ -3,5 +3,8 @@
     "go.useLanguageServer": true,
     "gopls": {
       "experimentalWorkspaceModule": true
-    }
+    },
+    "cSpell.words": [
+      "paseto"
+    ]
 }

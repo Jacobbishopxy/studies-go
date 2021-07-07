@@ -323,9 +323,9 @@ PASETO，即平台无关的安全令牌 Platform Agnostic Security Token，是�
 
 ![paseto13](./img/paseto13.png)
 
-不同于 JWT 仅用 base64 编码负载以及制定 token，PASETO 则是通过一个秘钥来加密以及认证所有的 token 中的数据，其使用的是一个带有关联数据（AEAD）算法的强认证密码。PASETO 版本 1 中所使用的 AEAD 算法是带有 HMAC SHA384 的 AES256 CTR。
+不同于 JWT 仅用 base64 编码负载以及指定 token，PASETO 则是通过一个秘钥来加密以及认证所有的 token 中的数据，其使用的是一个带有关联数据（AEAD）算法的强认证密码。PASETO 版本 1 中所使用的 AEAD 算法是带有 HMAC SHA384 的 AES256 CTR。
 
-而公共场景下，外部服务需要验证 token，我们需要使用一个非对称算法。这种场景下，PASETO 使用类似于 JWT 的方式，也就是说不对 token 数据加密，而仅用 base64 进行编码，并使用一个秘钥来制定数字签名的内容。
+而公共场景下，外部服务需要验证 token，我们需要使用一个非对称算法。这种场景下，PASETO 使用类似于 JWT 的方式，也就是说不对 token 数据加密，而仅用 base64 进行编码，并使用一个秘钥来指定数字签名的内容。
 
 ![paseto14](./img/paseto14.png)
 
