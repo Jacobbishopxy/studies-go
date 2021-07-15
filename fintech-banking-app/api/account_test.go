@@ -105,7 +105,7 @@ func TestGetAccountAPI(t *testing.T) {
 
 			// 创建 server。
 			// 不需要启动一个真实的 HTTP 服务，我们只需要用 `httptest` 包来记录 API 请求的响应。
-			server := NewServer(store)
+			server := newTestServer(t, store)
 			recorder := httptest.NewRecorder()
 
 			// 声明我们希望调用的 API 的 url 路径
