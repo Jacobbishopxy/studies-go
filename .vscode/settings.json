@@ -1,10 +1,8 @@
 {
-    "go.testFlags": ["-v"],
-    "go.useLanguageServer": true,
-    "gopls": {
-      "experimentalWorkspaceModule": true
-    },
-    "cSpell.words": [
-      "paseto"
-    ]
+  "go.testFlags": ["-v"],
+  "go.useLanguageServer": true,
+  "gopls": {
+    "experimentalWorkspaceModule": true
+  },
+  "cSpell.words": ["gorm", "paseto"]
 }
