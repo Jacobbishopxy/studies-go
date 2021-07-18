@@ -181,6 +181,15 @@ func (fo *Food) UpdateFood(c *gin.Context) {
 	c.JSON(http.StatusOK, updatedFood)
 }
 
+func (fo *Food) GetAllFood(c *gin.Context) {
+	allfood, err := fo.foodApp.GetAllFood()
+	if err != nil {
+		c.JSON(http.StatusInternalServerError, err.Error())
+		return
+	}
+	c.JSON(http.StatusOK, allfood)
+}
+
 func (fo *Food) GetFoodAndCreator(c *gin.Context) {
 	foodId, err := strconv.ParseUint(c.Param("food_id"), 10, 64)
 	if err != nil {
