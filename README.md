@@ -8,6 +8,12 @@
 
 ## To read
 
+- [A new Go API for Protocol Buffers](https://blog.golang.org/protobuf-apiv2)
+- [New official MongoDB Go Driver and Google Protobuf — making them work together](https://medium.com/@amsokol.com/new-official-mongodb-go-driver-and-google-protobuf-making-them-work-together-6357b0118f3f)
+- [Phone Book with GO, gRPC, Protobuf, Docker And MongoDB](https://www.linkedin.com/pulse/phone-book-go-grpc-protobuf-docker-mongodb-zimmermann-negreiros)
+- [Learning Go: MongoDB CRUD with gRPC](https://itnext.io/learning-go-mongodb-crud-with-grpc-98e425aeaae6)
+- [Customizing Protobuf JSON Serialization in Go](https://seb-nyberg.medium.com/customizing-protobuf-json-serialization-in-golang-6c58b5890356)
+- [A Go microservice using gRPC and MongoDB](http://pstylianides.com/a-go-microservice-using-grpc-and-mongodb/)
 - [Clean Boilerplate of Go, Domain-Driven Design, Clean Architecture, Gin and GORM.](https://dev.to/resotto/clean-boilerplate-of-go-domain-driven-design-clean-architecture-gin-and-gorm-2825)
 - [Moving Towards Domain Driven Design in Go](https://www.calhoun.io/moving-towards-domain-driven-design-in-go/)
 - [Marrying Actor, DDD, and Worker Pattern using Go](https://dev.to/bastianrob/marrying-actor-ddd-and-worker-pattern-using-go-17no)
@@ -26,6 +32,10 @@
 - [SSL/TLS](https://dev.to/techschoolguru/series/5898)
 
 ## To learn
+
+- [grpc-go](https://github.com/grpc/grpc-go)
+- [golang protobuf](https://github.com/golang/protobuf)
+- [protojson package](https://pkg.go.dev/google.golang.org/protobuf/encoding/protojson)
 
 ## Examples
 
