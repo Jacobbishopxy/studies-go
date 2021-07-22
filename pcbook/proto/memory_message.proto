@@ -11,7 +11,7 @@ message Memory {
     BYTE     = 2;
     KILOBYTE = 3;
     MEGABYTE = 4;
-    GIGaBYTE = 5;
+    GIGABYTE = 5;
     TERABYTE = 6;
   }
 
