@@ -4,5 +4,14 @@
   "gopls": {
     "experimentalWorkspaceModule": true
   },
-  "cSpell.words": ["gorm", "paseto"]
+  "cSpell.words": ["gorm", "paseto"],
+  "protoc": {
+    "path": "/usr/local/bin/protoc",
+    "options": [
+      "--proto_path=protos/v3",
+      "--proto_path=protos/v2",
+      "--proto_path=/usr/local/include",
+      "--proto_path=./pcbook/proto"
+    ]
+  }
 }
