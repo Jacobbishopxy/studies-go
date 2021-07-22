@@ -5,12 +5,13 @@
 - [blog](./blog/README.md)
 - [fintech-banking-app](./fintech-banking-app/README.md)
 - [mongo-gridfs](./mongo-gridfs/README.md)
+- [food-app](./food-app/README.md)
+- [pcbook](./pcbook/README.md)
 
 ## To read
 
 - [A new Go API for Protocol Buffers](https://blog.golang.org/protobuf-apiv2)
 - [New official MongoDB Go Driver and Google Protobuf — making them work together](https://medium.com/@amsokol.com/new-official-mongodb-go-driver-and-google-protobuf-making-them-work-together-6357b0118f3f)
-- [Phone Book with GO, gRPC, Protobuf, Docker And MongoDB](https://www.linkedin.com/pulse/phone-book-go-grpc-protobuf-docker-mongodb-zimmermann-negreiros)
 - [Learning Go: MongoDB CRUD with gRPC](https://itnext.io/learning-go-mongodb-crud-with-grpc-98e425aeaae6)
 - [Customizing Protobuf JSON Serialization in Go](https://seb-nyberg.medium.com/customizing-protobuf-json-serialization-in-golang-6c58b5890356)
 - [A Go microservice using gRPC and MongoDB](http://pstylianides.com/a-go-microservice-using-grpc-and-mongodb/)
