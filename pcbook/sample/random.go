@@ -2,12 +2,17 @@ package sample
 
 import (
 	"math/rand"
+	"time"
 
 	"pcbook/pb"
 
-	"github.com/golang/protobuf/ptypes"
 	"github.com/google/uuid"
+	"google.golang.org/protobuf/types/known/timestamppb"
 )
+
+func init() {
+	rand.Seed(time.Now().UnixNano())
+}
 
 // 返回一个新的样本 keyboard
 func NewKeyboard() *pb.Keyboard {
@@ -254,7 +259,7 @@ func NewLaptop() *pb.Laptop {
 		},
 		PriceUsed:   randomFloat64(1500, 3500),
 		ReleaseYear: uint32(randomInt(2015, 2021)),
-		UpdatedAt:   ptypes.TimestampNow(),
+		UpdatedAt:   timestamppb.Now(),
 	}
 
 	return laptop
