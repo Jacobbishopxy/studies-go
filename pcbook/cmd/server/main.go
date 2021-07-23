@@ -6,10 +6,10 @@ import (
 	"log"
 	"net"
 
+	"google.golang.org/grpc"
+
 	"pcbook/pb"
 	"pcbook/service"
-
-	"google.golang.org/grpc"
 )
 
 func main() {

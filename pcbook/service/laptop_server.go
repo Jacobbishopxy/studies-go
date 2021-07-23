@@ -16,6 +16,9 @@ type LaptopServer struct {
 	laptopStore LaptopStore
 }
 
+// 确保 grpc 服务接口的所有方法均被实现
+var _ pb.LaptopServiceServer = &LaptopServer{}
+
 // laptop 服务构造器
 func NewLaptopServer(laptopStore LaptopStore) *LaptopServer {
 	return &LaptopServer{laptopStore}
@@ -72,4 +75,34 @@ func (server *LaptopServer) CreateLaptop(
 	}
 
 	return res, nil
+}
+
+// SearchLaptop 为服务方流
+func (server *LaptopServer) SearchLaptop(
+	req *pb.SearchLaptopRequest,
+	stream pb.LaptopService_SearchLaptopServer,
+) error {
+	filter := req.GetFilter()
+	log.Printf("receive a search-laptop request with filter: %v", filter)
+
+	err := server.laptopStore.Search(
+		stream.Context(),
+		filter,
+		func(laptop *pb.Laptop) error {
+			res := &pb.SearchLaptopResponse{Laptop: laptop}
+			err := stream.Send(res)
+			if err != nil {
+				return err
+			}
+
+			log.Printf("sent laptop with id: %s", laptop.GetId())
+			return nil
+		},
+	)
+
+	if err != nil {
+		return status.Errorf(codes.Internal, "unexpected error: %v", err)
+	}
+
+	return nil
 }

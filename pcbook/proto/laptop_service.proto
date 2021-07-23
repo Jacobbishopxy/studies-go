@@ -5,11 +5,17 @@ package demo_go.pcbook;
 option go_package = ".;pb";
 
 import "laptop_message.proto";
+import "filter_message.proto";
 
 message CreateLaptopRequest { Laptop laptop = 1; }
 
 message CreateLaptopResponse { string id = 1; }
 
+message SearchLaptopRequest {  Filter filter = 1; }
+
+message SearchLaptopResponse {  Laptop laptop = 1; }
+
 service LaptopService {
   rpc CreateLaptop(CreateLaptopRequest) returns (CreateLaptopResponse) {};
+  rpc SearchLaptop(SearchLaptopRequest) returns (stream SearchLaptopResponse) {};
 }
