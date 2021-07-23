@@ -5,6 +5,7 @@ import (
 	"net"
 	"pcbook/pb"
 	"pcbook/sample"
+	"pcbook/serializer"
 	"pcbook/service"
 	"testing"
 
@@ -29,6 +30,14 @@ func TestClientCreateLaptop(t *testing.T) {
 	require.NoError(t, err)
 	require.NotNil(t, res)
 	require.Equal(t, expectedID, res.Id)
+
+	// 检查 laptop 是否存储于 store 中
+	other, err := laptopStore.Find(res.Id)
+	require.NoError(t, err)
+	require.NotNil(t, other)
+
+	// 检查存储的 laptop 是否与发送的一致
+	requireSameLaptop(t, laptop, other)
 }
 
 func startTestLaptopServer(t *testing.T, laptopStore service.LaptopStore) string {
@@ -50,4 +59,14 @@ func newTestLaptopClient(t *testing.T, serverAddress string) pb.LaptopServiceCli
 	require.NoError(t, err)
 
 	return pb.NewLaptopServiceClient(conn)
+}
+
+func requireSameLaptop(t *testing.T, laptop1 *pb.Laptop, laptop2 *pb.Laptop) {
+	json1, err := serializer.ProtobufToJSON(laptop1)
+	require.NoError(t, err)
+
+	json2, err := serializer.ProtobufToJSON(laptop2)
+	require.NoError(t, err)
+
+	require.Equal(t, json1, json2)
 }

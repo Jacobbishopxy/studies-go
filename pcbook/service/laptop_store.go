@@ -12,7 +12,11 @@ import (
 // laptop store 接口
 type LaptopStore interface {
 	Save(laptop *pb.Laptop) error
+
+	Find(id string) (*pb.Laptop, error)
 }
+
+var _ LaptopStore = &InMemoryLaptopStore{}
 
 // 内存数据库
 type InMemoryLaptopStore struct {
@@ -54,4 +58,16 @@ func deepCopy(laptop *pb.Laptop) (*pb.Laptop, error) {
 	}
 
 	return other, nil
+}
+
+func (store *InMemoryLaptopStore) Find(id string) (*pb.Laptop, error) {
+	store.mutex.RLock()
+	defer store.mutex.RUnlock()
+
+	laptop := store.data[id]
+	if laptop == nil {
+		return nil, nil
+	}
+
+	return deepCopy(laptop)
 }
