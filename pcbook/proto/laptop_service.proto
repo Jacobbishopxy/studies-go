@@ -11,11 +11,32 @@ message CreateLaptopRequest { Laptop laptop = 1; }
 
 message CreateLaptopResponse { string id = 1; }
 
-message SearchLaptopRequest {  Filter filter = 1; }
+message SearchLaptopRequest { Filter filter = 1; }
 
-message SearchLaptopResponse {  Laptop laptop = 1; }
+message SearchLaptopResponse { Laptop laptop = 1; }
+
+message UploadImageRequest {
+  oneof data {
+    ImageInfo info   = 1;
+    bytes chunk_data = 2;
+  };
+}
+
+message ImageInfo {
+  string laptop_id  = 1;
+  string image_type = 2;
+}
+
+message UploadImageResponse {
+  string id   = 1;
+  uint32 size = 2;
+}
 
 service LaptopService {
+  // Unary
   rpc CreateLaptop(CreateLaptopRequest) returns (CreateLaptopResponse) {};
+  // Server-side streaming
   rpc SearchLaptop(SearchLaptopRequest) returns (stream SearchLaptopResponse) {};
+  // Client-side streaming
+  rpc UploadImage(stream UploadImageRequest) returns (UploadImageResponse) {};
 }

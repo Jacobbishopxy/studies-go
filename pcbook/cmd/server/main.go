@@ -19,7 +19,8 @@ func main() {
 	grpcServer := grpc.NewServer()
 
 	laptopStore := service.NewInMemoryLaptopStore()
-	laptopServer := service.NewLaptopServer(laptopStore)
+	imageStore := service.NewDiskImageStore("tmp")
+	laptopServer := service.NewLaptopServer(laptopStore, imageStore)
 	pb.RegisterLaptopServiceServer(grpcServer, laptopServer)
 
 	address := fmt.Sprintf("0.0.0.0:%d", *port)

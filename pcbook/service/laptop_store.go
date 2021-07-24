@@ -13,11 +13,11 @@ import (
 
 // laptop store 接口
 type LaptopStore interface {
-	// 一元 grpc
+	// 存储
 	Save(laptop *pb.Laptop) error
-	// 一元 grpc
+	// 根据 id 查询
 	Find(id string) (*pb.Laptop, error)
-	// 服务方单向流 grpc，`context` 用于控制 deadline/timeout 的请求
+	// 根据 filter 条件查询
 	Search(ctx context.Context, filter *pb.Filter, found func(laptop *pb.Laptop) error) error
 }
 

@@ -1,3 +1,3 @@
 Language: Proto
-
+ColumnLimit: 0
 AlignConsecutiveAssignments: true
