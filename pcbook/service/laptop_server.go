@@ -19,14 +19,15 @@ const maxImageSize = 1 << 20
 type LaptopServer struct {
 	laptopStore LaptopStore
 	imageStore  ImageStore
+	ratingStore RatingStore
 }
 
 // 确保 grpc 服务接口的所有方法均被实现
 var _ pb.LaptopServiceServer = &LaptopServer{}
 
 // laptop 服务构造器
-func NewLaptopServer(laptopStore LaptopStore, imageStore ImageStore) *LaptopServer {
-	return &LaptopServer{laptopStore, imageStore}
+func NewLaptopServer(laptopStore LaptopStore, imageStore ImageStore, ratingStore RatingStore) *LaptopServer {
+	return &LaptopServer{laptopStore, imageStore, ratingStore}
 }
 
 // CreateLaptop 为一元 grpc 用于创建 new laptop
@@ -179,6 +180,60 @@ func (server *LaptopServer) UploadImage(stream pb.LaptopService_UploadImageServe
 	}
 
 	log.Printf("saved image with id: %s, size: %d", imageID, imageSize)
+	return nil
+}
+
+// RateLaptop 为双端的 grpc 流
+func (server *LaptopServer) RateLaptop(stream pb.LaptopService_RateLaptopServer) error {
+	// 由于流中会有多个请求，这里需要使用 for 循环来处理
+	for {
+		err := contextError(stream.Context())
+		if err != nil {
+			return err
+		}
+
+		// 获取请求
+		req, err := stream.Recv()
+		if err == io.EOF {
+			log.Print("no more data")
+			break
+		}
+		if err != nil {
+			return logError(status.Errorf(codes.Unknown, "cannot receive stream request: %v", err))
+		}
+
+		// 从持久化的数据库中寻找 laptop
+		laptopID := req.GetLaptopId()
+		score := req.GetScore()
+
+		log.Printf("received a rate-laptop request: id = %s, score = %.2f", laptopID, score)
+
+		found, err := server.laptopStore.Find(laptopID)
+		if err != nil {
+			return logError(status.Errorf(codes.Internal, "cannot find laptop: %v", err))
+		}
+		if found == nil {
+			return logError(status.Errorf(codes.NotFound, "laptopID %s is not found", laptopID))
+		}
+
+		// 调用 ratingStore.Add 为 laptop 添加 score，并返回更新后的对象
+		rating, err := server.ratingStore.Add(laptopID, score)
+		if err != nil {
+			return logError(status.Errorf(codes.Internal, "cannot add rating to the store: %v", err))
+		}
+
+		res := &pb.RateLaptopResponse{
+			LaptopId:     laptopID,
+			RatedCount:   rating.Count,
+			AverageScore: rating.Sum / float64(rating.Count),
+		}
+
+		err = stream.Send(res)
+		if err != nil {
+			return logError(status.Errorf(codes.Unknown, "cannot send stream response: %v", err))
+		}
+	}
+
 	return nil
 }
 

@@ -141,3 +141,8 @@ func NewLaptop() *pb.Laptop {
 
 	return laptop
 }
+
+// 随机 laptop 打分分数
+func RandomLaptopScore() float64 {
+	return float64(randomInt(1, 10))
+}

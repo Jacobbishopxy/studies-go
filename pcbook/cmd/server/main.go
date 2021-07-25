@@ -20,7 +20,8 @@ func main() {
 
 	laptopStore := service.NewInMemoryLaptopStore()
 	imageStore := service.NewDiskImageStore("tmp")
-	laptopServer := service.NewLaptopServer(laptopStore, imageStore)
+	scoreStore := service.NewInMemoryRatingStore()
+	laptopServer := service.NewLaptopServer(laptopStore, imageStore, scoreStore)
 	pb.RegisterLaptopServiceServer(grpcServer, laptopServer)
 
 	address := fmt.Sprintf("0.0.0.0:%d", *port)
