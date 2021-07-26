@@ -8,11 +8,18 @@
 
   ```sh
   PROTOC_ZIP=protoc-3.17.3-linux-x86_64.zip
+
   curl -OL https://github.com/protocolbuffers/protobuf/releases/download/v3.17.3/$PROTOC_ZIP
+
   sudo unzip -o $PROTOC_ZIP -d /usr/local bin/protoc
+
   sudo unzip -o $PROTOC_ZIP -d /usr/local 'include/*'
+
   rm -f $PROTOC_ZIP
+
   sudo chown -R $USER /usr/local/include/google/
+
+  protoc --version
   ```
 
 - clang-format：
@@ -21,11 +28,27 @@
   sudo apt-get install clang-format
   ```
 
+- 安装 gRPC 客户端 evans，用于运行时的 grpc reflection：
+
+  ```sh
+  curl -OL https://github.com/ktr0731/evans/releases/download/0.10.0/evans_linux_amd64.tar.gz
+
+  tar zxvf evans_linux_amd64.tar.gz
+
+  sudo mv evans /usr/local/bin/
+
+  rm evans_linux_amd64.tar.gz
+
+  evans -v
+  ```
+
 - 依赖：
 
   ```sh
   go get -u google.golang.org/grpc
+
   go get -u google.golang.org/protobuf
+
   go get -u github.com/golang/protobuf/protoc-gen-go
   ```
 

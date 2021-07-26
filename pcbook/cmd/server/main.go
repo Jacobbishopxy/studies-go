@@ -7,6 +7,7 @@ import (
 	"net"
 
 	"google.golang.org/grpc"
+	"google.golang.org/grpc/reflection"
 
 	"pcbook/pb"
 	"pcbook/service"
@@ -23,6 +24,8 @@ func main() {
 	scoreStore := service.NewInMemoryRatingStore()
 	laptopServer := service.NewLaptopServer(laptopStore, imageStore, scoreStore)
 	pb.RegisterLaptopServiceServer(grpcServer, laptopServer)
+	// 开启 grpc reflection，使得运行时的客户端可以在不需要预先编译的服务端信息的情况下构建 RPC 请求和响应
+	reflection.Register(grpcServer)
 
 	address := fmt.Sprintf("0.0.0.0:%d", *port)
 	listener, err := net.Listen("tcp", address)
