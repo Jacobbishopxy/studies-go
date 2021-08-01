@@ -49,6 +49,8 @@
 
   go get -u google.golang.org/protobuf
 
+  # 非常重要！不直接作用于本项目（go mod tidy 会清除）
+  # global 环境缺少该库会导致 protoc 命令无法生成 golang 代码
   go get -u github.com/golang/protobuf/protoc-gen-go
   ```
 
@@ -67,3 +69,17 @@
       "options": ["--proto_path=./pcbook/proto"]
   }
   ```
+
+## GRPC Interceptor
+
+本质上 GRPC 拦截器与一个中间件函数相似，可以被添加至服务端以及客户端。
+
+- 服务端的拦截器是在调用服务端 RPC 方法前的一个函数。可被用于多个目的，例如 logging，tracing，rate-limiting，authentication 以及 authorization。
+- 同样的，客户端拦截器是在调用客户端的 RPC 方法前的一个函数。
+
+![grpc-interceptor](./grpc-interceptor.png)
+
+本文中我们将：
+
+- 首先，实现服务端拦截器通过 JWT 用于验证 gRPC 的 APIs。通过该拦截器可以确保特定职能的用户可以调用服务端的指定 API。
+- 其次，实现客户端拦截器用于用户登录以及调用 gRPC 的 API 前的 JWT 绑定。
