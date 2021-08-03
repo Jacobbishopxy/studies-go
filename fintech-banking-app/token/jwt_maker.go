@@ -27,6 +27,7 @@ var (
 	ErrExpiredToken = errors.New("token has expired")
 )
 
+// 是否过期的验证
 func (payload *Payload) Valid() error {
 	if time.Now().After(payload.ExpiredAt) {
 		return ErrExpiredToken
