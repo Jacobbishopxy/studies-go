@@ -7,6 +7,7 @@
 - [mongo-gridfs](./mongo-gridfs/README.md)
 - [food-app](./food-app/README.md)
 - [pcbook](./pcbook/README.md)
+- [gin-gorm-gql](./gin-gorm-gql/README.md)
 
 ## To read
 

@@ -1,0 +1,70 @@
+<html>
+  <head>
+    <script>
+      var customerName = "yangkun";
+      var productCode = "2023";
+      var quantity = 8.0,
+        orderAmount = 9.9;
+      var productName = "IBM x61 notebook pc";
+      var input = {
+        customerName,
+        orderAmount,
+        items: [
+          {
+            productCode,
+            productName,
+            quantity,
+          },
+        ],
+      };
+      var query = `mutation createOrder ($input: OrderInput!) {
+  createOrder(input: $input) {
+    customerName
+    items {
+      productCode
+      productName
+      quantity
+    }
+  }
+}`;
+
+      fetch("/query", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          query,
+          variables: { input },
+        }),
+      });
+
+      fetch("/query", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify({
+          query: `query orders {
+    orders {
+      id  
+      customerName
+      items {
+        productName
+        quantity
+      }
+    }
+  }`,
+        }),
+      })
+        .then((r) => r.json())
+        .then((data) => console.log("data returned:", data));
+    </script>
+  </head>
+
+  <body>
+    <div class="main"></div>
+  </body>
+</html>
