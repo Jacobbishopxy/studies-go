@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package todo;
+
+option go_package = ".;pb";
+
+import "google/protobuf/timestamp.proto";
+
+enum Status {
+  STATUS_UNSPECIFIED = 0;
+  STATUS_CREATED = 1;
+  STATUS_DONE = 2;
+}
+
+message Todo {
+  string todo_id = 1;
+  Status status = 2;
+  string content = 3;
+  google.protobuf.Timestamp created_at = 4;
+}

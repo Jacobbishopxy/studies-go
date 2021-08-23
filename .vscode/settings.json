@@ -1,17 +1,18 @@
 {
-  "go.testFlags": ["-v"],
-  "go.useLanguageServer": true,
-  "gopls": {
-    "experimentalWorkspaceModule": true
-  },
-  "cSpell.words": ["Protobuf", "gorm", "grpc", "paseto", "protoc"],
-  "protoc": {
-    "path": "/usr/local/bin/protoc",
-    "options": [
-      "--proto_path=protos/v3",
-      "--proto_path=protos/v2",
-      "--proto_path=/usr/local/include",
-      "--proto_path=./pcbook/proto"
-    ]
-  }
+	"go.testFlags": ["-v"],
+	"go.useLanguageServer": true,
+	"gopls": {
+		"experimentalWorkspaceModule": true
+	},
+	"cSpell.words": ["Protobuf", "gorm", "grpc", "paseto", "protoc"],
+	"protoc": {
+		"path": "/usr/local/bin/protoc",
+		"options": [
+			"--proto_path=protos/v3",
+			"--proto_path=protos/v2",
+			"--proto_path=/usr/local/include",
+			"--proto_path=./pcbook/proto",
+			"--proto_path=./protobuf-json/proto"
+		]
+	}
 }
