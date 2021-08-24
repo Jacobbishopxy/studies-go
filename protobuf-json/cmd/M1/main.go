@@ -1,12 +1,12 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
 
 	"protobuf-json/pb"
 
 	"github.com/google/uuid"
+	"google.golang.org/protobuf/encoding/protojson"
 	"google.golang.org/protobuf/types/known/timestamppb"
 )
 
@@ -18,6 +18,13 @@ func main() {
 		CreatedAt: timestamppb.Now(),
 	}
 
-	jsonBytes, _ := json.MarshalIndent(exampleTodo, "", "    ")
+	m := protojson.MarshalOptions{
+		Indent:          "  ",
+		EmitUnpopulated: true,
+		UseProtoNames:   true,
+	}
+
+	//
+	jsonBytes, _ := m.Marshal(exampleTodo)
 	fmt.Println(string(jsonBytes))
 }
