@@ -83,3 +83,5 @@
 
 - 首先，实现服务端拦截器通过 JWT 用于验证 gRPC 的 APIs。通过该拦截器可以确保特定职能的用户可以调用服务端的指定 API。
 - 其次，实现客户端拦截器用于用户登录以及调用 gRPC 的 API 前的 JWT 绑定。
+
+## Types of gRPC connections

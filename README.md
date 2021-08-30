@@ -11,6 +11,7 @@
 
 ## To read
 
+- [Auth reverse proxy in Golang](https://dev.to/lautarojayat/auth-reverse-proxy-in-golang-3091)
 - [A new Go API for Protocol Buffers](https://blog.golang.org/protobuf-apiv2)
 - [New official MongoDB Go Driver and Google Protobuf — making them work together](https://medium.com/@amsokol.com/new-official-mongodb-go-driver-and-google-protobuf-making-them-work-together-6357b0118f3f)
 - [Learning Go: MongoDB CRUD with gRPC](https://itnext.io/learning-go-mongodb-crud-with-grpc-98e425aeaae6)
