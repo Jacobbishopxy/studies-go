@@ -8,9 +8,11 @@
 - [food-app](./food-app/README.md)
 - [pcbook](./pcbook/README.md)
 - [gin-gorm-gql](./gin-gorm-gql/README.md)
+- [microservices-dev](./microservices-dev/README.md)
 
 ## To read
 
+- [Building Microservices in Go](https://dev.to/mariocarrion/series/11630)
 - [Auth reverse proxy in Golang](https://dev.to/lautarojayat/auth-reverse-proxy-in-golang-3091)
 - [A new Go API for Protocol Buffers](https://blog.golang.org/protobuf-apiv2)
 - [New official MongoDB Go Driver and Google Protobuf — making them work together](https://medium.com/@amsokol.com/new-official-mongodb-go-driver-and-google-protobuf-making-them-work-together-6357b0118f3f)
