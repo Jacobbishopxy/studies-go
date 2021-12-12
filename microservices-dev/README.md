@@ -7,3 +7,4 @@
 1. [Repository Pattern](./doc/3.%20Repository%20Pattern.md)
 1. [Services in Domain Driven Design](./doc/4.%20Services%20in%20Domain%20Driven%20Design.md)
 1. [Implementing and Dealing with errors](./doc/5.%20Implementing%20and%20Dealing%20with%20errors.md)
+1. [OpenTelemetry](./doc/6.%20OpenTelemetry.md)

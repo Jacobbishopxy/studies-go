@@ -41,6 +41,8 @@
 - [grpc-go](https://github.com/grpc/grpc-go)
 - [golang protobuf](https://github.com/golang/protobuf)
 - [protojson package](https://pkg.go.dev/google.golang.org/protobuf/encoding/protojson)
+- [golang logging](https://github.com/sirupsen/logrus)
+- [go-swagger](https://github.com/go-swagger/go-swagger)
 
 ## Examples
 
