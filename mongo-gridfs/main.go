@@ -70,7 +70,9 @@ func DownloadFile(filename string) {
 	// GridFs 文件
 	db := conn.Database("myFiles")
 	fsFiles := db.Collection("fs.files")
-	ctx, _ := context.WithTimeout(context.Background(), 10*time.Second)
+	ctx, cfn := context.WithTimeout(context.Background(), 10*time.Second)
+	// timeout 后 cancel
+	defer cfn()
 
 	var results bson.M
 	err := fsFiles.FindOne(ctx, bson.M{}).Decode(&results)

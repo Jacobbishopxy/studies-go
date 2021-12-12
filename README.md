@@ -9,6 +9,7 @@
 - [pcbook](./pcbook/README.md)
 - [gin-gorm-gql](./gin-gorm-gql/README.md)
 - [microservices-dev](./microservices-dev/README.md)
+- [mongo-grpc](./mongo-grpc/README.md)
 
 ## To read
 
@@ -16,7 +17,6 @@
 - [Auth reverse proxy in Golang](https://dev.to/lautarojayat/auth-reverse-proxy-in-golang-3091)
 - [A new Go API for Protocol Buffers](https://blog.golang.org/protobuf-apiv2)
 - [New official MongoDB Go Driver and Google Protobuf — making them work together](https://medium.com/@amsokol.com/new-official-mongodb-go-driver-and-google-protobuf-making-them-work-together-6357b0118f3f)
-- [Learning Go: MongoDB CRUD with gRPC](https://itnext.io/learning-go-mongodb-crud-with-grpc-98e425aeaae6)
 - [Customizing Protobuf JSON Serialization in Go](https://seb-nyberg.medium.com/customizing-protobuf-json-serialization-in-golang-6c58b5890356)
 - [A Go microservice using gRPC and MongoDB](http://pstylianides.com/a-go-microservice-using-grpc-and-mongodb/)
 - [Clean Boilerplate of Go, Domain-Driven Design, Clean Architecture, Gin and GORM.](https://dev.to/resotto/clean-boilerplate-of-go-domain-driven-design-clean-architecture-gin-and-gorm-2825)
