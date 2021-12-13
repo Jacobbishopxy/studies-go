@@ -11,6 +11,7 @@
 		"gorm",
 		"grpc",
 		"paseto",
+		"proto",
 		"Protobuf",
 		"protoc"
 	],

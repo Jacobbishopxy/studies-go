@@ -30,7 +30,7 @@ func main() {
 	// 创建新的 gRPC 服务器
 	s := grpc.NewServer(opts...)
 	// BlogService 实例
-	srv, err := blog.NewBlogServiceServer("mongodb://localhost:27017", "dev", "blog")
+	srv, err := blog.NewBlogServiceServer("mongodb://admin:password@localhost:27017", "dev", "blog")
 	if err != nil {
 		log.Fatalf("Unable to create new blog service: %v", err)
 	}
@@ -58,7 +58,7 @@ func main() {
 	fmt.Println("\nStopping the server...")
 	s.Stop()
 	listener.Close()
-	fmt.Println("Closing MongoDB connection")
+	fmt.Println("Closing MongoDB connection...")
 	srv.Disconnect()
 	fmt.Println("Done.")
 }
