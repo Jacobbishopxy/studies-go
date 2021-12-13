@@ -30,7 +30,7 @@ func main() {
 	// 创建新的 gRPC 服务器
 	s := grpc.NewServer(opts...)
 	// BlogService 实例
-	srv, err := blog.NewBlogServiceServer("mongodb://localhost:27017", "blog", "posts")
+	srv, err := blog.NewBlogServiceServer("mongodb://localhost:27017", "dev", "blog")
 	if err != nil {
 		log.Fatalf("Unable to create new blog service: %v", err)
 	}

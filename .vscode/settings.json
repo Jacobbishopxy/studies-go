@@ -6,6 +6,7 @@
 	},
 	"cSpell.words": [
 		"blogdb",
+		"blogpb",
 		"BSON",
 		"gorm",
 		"grpc",
