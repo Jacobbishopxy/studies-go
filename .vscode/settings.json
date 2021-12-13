@@ -4,7 +4,15 @@
 	"gopls": {
 		"experimentalWorkspaceModule": true
 	},
-	"cSpell.words": ["Protobuf", "gorm", "grpc", "paseto", "protoc"],
+	"cSpell.words": [
+		"blogdb",
+		"BSON",
+		"gorm",
+		"grpc",
+		"paseto",
+		"Protobuf",
+		"protoc"
+	],
 	"protoc": {
 		"path": "/usr/local/bin/protoc",
 		"options": [

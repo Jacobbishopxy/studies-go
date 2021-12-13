@@ -1,14 +1,13 @@
-module mongo-grpc-server
+module server
 
 go 1.17
 
 replace blogpb => ../pb
 
 require (
+	blogpb v1.0.0
 	go.mongodb.org/mongo-driver v1.8.1
 	google.golang.org/grpc v1.42.0
-
-	blogpb v1.0.0
 )
 
 require (
