@@ -34,7 +34,9 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/main.todo'
+            items:
+              $ref: '#/definitions/main.todo'
+            type: array
       summary: get all items in the todo list
     post:
       operationId: create-todo
@@ -110,7 +112,6 @@ paths:
       - description: todo list limit
         in: query
         name: limit
-        required: true
         type: string
       produces:
       - application/json
@@ -118,7 +119,9 @@ paths:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/main.todo'
+            items:
+              $ref: '#/definitions/main.todo'
+            type: array
         "404":
           description: Not Found
           schema:

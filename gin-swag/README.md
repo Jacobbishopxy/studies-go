@@ -4,6 +4,8 @@
 
 ## Notes
 
+[访问 Swagger UI](http://localhost:8080/docs/index.html)
+
 在项目中使用 Swagger 的好处：
 
 - 快速并轻松的创建，维护，发布 API 文档
