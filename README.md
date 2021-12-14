@@ -10,6 +10,7 @@
 - [gin-gorm-gql](./gin-gorm-gql/README.md)
 - [microservices-dev](./microservices-dev/README.md)
 - [mongo-grpc](./mongo-grpc/README.md)
+- [gin-swag](./gin-swag/README.md)
 
 ## To read
 
