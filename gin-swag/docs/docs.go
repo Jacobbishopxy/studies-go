@@ -141,6 +141,45 @@ var doc = `{
                     }
                 }
             }
+        },
+        "/todo_pagination": {
+            "get": {
+                "produces": [
+                    "application/json"
+                ],
+                "summary": "get a todo item by Pagination",
+                "operationId": "get-todo-by-pagination",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "todo list offset",
+                        "name": "offset",
+                        "in": "query",
+                        "required": true
+                    },
+                    {
+                        "type": "string",
+                        "description": "todo list limit",
+                        "name": "limit",
+                        "in": "query",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/main.todo"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/main.message"
+                        }
+                    }
+                }
+            }
         }
     },
     "definitions": {
@@ -182,7 +221,7 @@ var SwaggerInfo = swaggerInfo{
 	BasePath:    "/",
 	Schemes:     []string{},
 	Title:       "Go + Gin Todo API",
-	Description: "This is a sample server todo server. You can visit the GitHub repository at https://github.com/LordGhostX/swag-gin-demo",
+	Description: "This is a sample server todo server.",
 }
 
 type s struct{}

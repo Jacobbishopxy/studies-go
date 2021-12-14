@@ -18,8 +18,7 @@ info:
     email: support@swagger.io
     name: API Support
     url: http://www.swagger.io/support
-  description: This is a sample server todo server. You can visit the GitHub repository
-    at https://github.com/LordGhostX/swag-gin-demo
+  description: This is a sample server todo server.
   license:
     name: MIT
     url: https://opensource.org/licenses/MIT
@@ -99,4 +98,30 @@ paths:
           schema:
             $ref: '#/definitions/main.message'
       summary: get a todo item by ID
+  /todo_pagination:
+    get:
+      operationId: get-todo-by-pagination
+      parameters:
+      - description: todo list offset
+        in: query
+        name: offset
+        required: true
+        type: string
+      - description: todo list limit
+        in: query
+        name: limit
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.todo'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/main.message'
+      summary: get a todo item by Pagination
 swagger: "2.0"

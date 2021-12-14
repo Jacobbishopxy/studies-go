@@ -1,7 +1,10 @@
 package main
 
 import (
+	"io"
 	"net/http"
+	"os"
+	"strconv"
 
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
@@ -26,12 +29,19 @@ var todoList = []todo{
 	{"1", "Learn Go"},
 	{"2", "Learn Gin"},
 	{"3", "Learn Swagger"},
+	{"4", "Try to finish this tutorial"},
+	{"5", "Have fun with it"},
+	{"6", "Do not forget to star it"},
+	{"7", "This is a test"},
+	{"8", "What a great day"},
+	{"9", "I am learning Go"},
+	{"10", "Useful for learning Go"},
 }
 
 // @Summary get all items in the todo list
 // @ID get-all-todos
 // @Produce json
-// @Success 200 {object} todo
+// @Success 200 {array} todo
 // @Router /todo [get]
 func getAllTodos(c *gin.Context) {
 	c.JSON(http.StatusOK, todoList)
@@ -57,6 +67,38 @@ func getTodoByID(c *gin.Context) {
 	r := message{"todo not found"}
 
 	c.JSON(http.StatusNotFound, r)
+}
+
+// @Summary get a todo item by Pagination
+// @ID get-todo-by-pagination
+// @Produce json
+// @Param offset query string true "todo list offset"
+// @Param limit query string true "todo list limit"
+// @Success 200 {array} todo
+// @Failure 404 {object} message
+// @Router /todo_pagination [get]
+func getTodoByPagination(c *gin.Context) {
+	offset, err := strconv.Atoi(c.Query("offset"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, message{"invalid offset"})
+		return
+	}
+	limit, err := strconv.Atoi(c.DefaultQuery("limit", "5"))
+	if err != nil {
+		c.JSON(http.StatusBadRequest, message{"invalid limit"})
+		return
+	}
+
+	if offset <= len(todoList) {
+		end := offset + limit
+		if end > len(todoList) {
+			c.JSON(http.StatusOK, todoList[offset:])
+		} else {
+			c.JSON(http.StatusOK, todoList[offset:offset+limit])
+		}
+	} else {
+		c.JSON(http.StatusOK, []todo{})
+	}
 }
 
 // @Summary add a new item to the todo list
@@ -116,10 +158,17 @@ func deleteTodo(c *gin.Context) {
 // @BasePath /
 // @query.collection.format multi
 func main() {
+
+	// Gin logging
+	gin.DisableConsoleColor()
+	f, _ := os.Create("gin.log")
+	gin.DefaultWriter = io.MultiWriter(f)
+
 	// 配置 Gin 服务
 	router := gin.Default()
 	router.GET("/todo", getAllTodos)
 	router.GET("/todo/:id", getTodoByID)
+	router.GET("/todo_pagination", getTodoByPagination)
 	router.POST("/todo", createTodo)
 	router.DELETE("/todo", deleteTodo)
 
