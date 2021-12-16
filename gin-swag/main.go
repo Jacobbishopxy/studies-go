@@ -73,7 +73,7 @@ func getTodoByID(c *gin.Context) {
 // @ID get-todo-by-pagination
 // @Produce json
 // @Param offset query string true "todo list offset"
-// @Param limit query string true "todo list limit"
+// @Param limit query string false "todo list limit"
 // @Success 200 {array} todo
 // @Failure 404 {object} message
 // @Router /todo_pagination [get]

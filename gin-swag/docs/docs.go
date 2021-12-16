@@ -42,7 +42,10 @@ var doc = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/main.todo"
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/main.todo"
+                            }
                         }
                     }
                 }
@@ -161,15 +164,17 @@ var doc = `{
                         "type": "string",
                         "description": "todo list limit",
                         "name": "limit",
-                        "in": "query",
-                        "required": true
+                        "in": "query"
                     }
                 ],
                 "responses": {
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/main.todo"
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/main.todo"
+                            }
                         }
                     },
                     "404": {
