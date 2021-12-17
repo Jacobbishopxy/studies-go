@@ -14,6 +14,9 @@
 
 ## To read
 
+- [ddd-go1](https://programmingpercy.tech/blog/how-to-domain-driven-design-ddd-golang/)
+- [ddd-go2](https://programmingpercy.tech/blog/how-to-structure-ddd-in-go/)
+- [Sending files via gRPC](https://ops.tips/blog/sending-files-via-grpc/)
 - [Building Microservices in Go](https://dev.to/mariocarrion/series/11630)
 - [Auth reverse proxy in Golang](https://dev.to/lautarojayat/auth-reverse-proxy-in-golang-3091)
 - [A new Go API for Protocol Buffers](https://blog.golang.org/protobuf-apiv2)

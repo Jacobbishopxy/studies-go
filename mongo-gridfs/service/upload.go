@@ -38,7 +38,7 @@ func FileUpload(c *gin.Context) {
 		return
 	}
 
-	// 简历 MongoDB GridFS 连接
+	// 建立 MongoDB 连接，创建 GridFS Bucket
 	conn := InitiateMongoClient()
 	bucket, err := gridfs.NewBucket(conn.Database("files"))
 	if err != nil {
